@@ -1,0 +1,84 @@
+/* ============================================================================
+   SIDEBERRY STATIC THEME GRADIENT OVERLAY STYLES
+   ========================================================================= */
+
+#root.root,
+.Root,
+body {
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0.05 0 0 0 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--s-frame-bg, Canvas), var(--s-frame-fg, CanvasText) 7%) 0%,
+      var(--s-frame-bg, Canvas) 100%
+    ) !important;
+  background-size: 160px 160px, 100% 100% !important;
+  background-repeat: repeat, no-repeat !important;
+  background-color: var(--s-frame-bg, Canvas) !important;
+}
+
+.Tab[data-active] .lvl-wrapper:after {
+  background-color: color-mix(in srgb, var(--s-frame-bg, Canvas), var(--s-frame-fg, CanvasText) 14%) !important;
+}
+
+/* Make all navigation, panels, and inner layout containers transparent */
+.NavigationBar,
+.Panel,
+.BottomBar,
+.container,
+.panel-content,
+.ScrollBox,
+.virtual-list,
+.bottom-spacer,
+.nav-space {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Structural resets for scroll wrappers, spacing, and min-heights */
+.ScrollBox,
+.panel-content,
+.container {
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Navigation bar top border blend shadow */
+.NavigationBar {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+/* New tab button container cleanup */
+.new-tab-btns {
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 12px !important;
+}
+
+/* Strip out unwanted pseudo-elements, shadows, and scroll overlays */
+.new-tab-btns::before,
+.new-tab-btns::after,
+.ScrollBox::after,
+.bottom-shadow {
+  display: none !important;
+  background: none !important;
+}
+
+/* Force zero minimum height and eliminate the trailing panel spacer block */
+.panel-card,
+.bottom-space,
+.virtual-list > div:last-child {
+  min-height: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+}
+
+/* ============================================================================
+   COLLAPSED SUB-TAB OVERLAY FIXES
+   ========================================================================= */
+
+#root:not(:hover) {
+  --tabs-indent: 0px;
+  --tabs-lvl-opacity: 0;
+}

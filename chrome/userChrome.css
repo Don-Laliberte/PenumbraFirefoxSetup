@@ -1,0 +1,116 @@
+/* ============================================================================
+- 1. WINDOW CONTROLS & HIDING HORIZONTAL TABS
+- ========================================================================= */
+
+/* Completely hide native tabs and titlebar elements */
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* Add padding to the nav bar so website or menu items don't hide under the window buttons */
+#nav-bar {
+  padding-right: 138px !important;
+}
+
+/* Force Windows 11 window control buttons to overlay cleanly on top right */
+.titlebar-buttonbox-container {
+  display: block !important;
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  height: 40px !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.titlebar-button {
+  pointer-events: auto !important;
+  -moz-window-dragging: no-drag !important;
+}
+
+
+/* ============================================================================
+- 2. SIDEBERRY HOVER-TO-EXPAND (OVERLAY POP-OUT FIX)
+- ========================================================================= */
+
+/* Fix the base sidebar box width to match Sideberry's nav strip */
+#sidebar-box {
+  position: relative !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  margin: 0 !important;
+  margin-top: -1px !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: var(--toolbar-bgcolor, transparent) !important;
+  background-color: transparent !important;
+  z-index: 10 !important;
+  overflow: visible !important;
+  transition: none !important;
+}
+
+/* Force the internal sidebar element to act as an expanding overlay card with a gradient */
+#sidebar-box #sidebar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 34px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-top-left-radius: 4px !important;
+  z-index: 999 !important;
+  overflow: hidden !important;
+  transition: width 0.15s ease-in-out !important;
+  background: transparent !important;
+  box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Expand wider on hover so full tab titles fit cleanly */
+#sidebar-box:hover #sidebar {
+  width: 280px !important;
+}
+
+/* Hide the sidebar splitter border gap next to the sidebar */
+#sidebar-splitter {
+  display: none !important;
+}
+
+/* Hide the native sidebar header ("Bitwarden", "Sidebery", dropdown, and X button) */
+#sidebar-header,
+#sidebar-panel-header,
+.sidebar-panel-header {
+  display: none !important;
+}
+
+
+/* ============================================================================
+- 3. AUTO-HIDE BOOKMARKS TOOLBAR (SHOWS ONLY ON HOVER)
+- ========================================================================= */
+
+#PersonalToolbar {
+  display: block !important;
+  max-height: 0px !important;
+  overflow: hidden !important;
+  transition: max-height 0.2s ease-in-out !important;
+  z-index: 300 !important;
+  position: relative !important;
+}
+
+/* Reveal bookmarks toolbar when hovering over the top navigation area */
+#nav-bar:hover + #PersonalToolbar,
+#PersonalToolbar:hover {
+  max-height: 40px !important;
+}
+
+/* Remove the divider line between the top toolbar and Sideberry */
+#navigator-toolbox {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox::after {
+  display: none !important;
+}
